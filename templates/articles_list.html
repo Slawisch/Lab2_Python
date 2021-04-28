@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Публікації</title>
+</head>
+<body>
+<h4>
+<a href="/">Головна</a>
+</h4><br/>
+Публікації <br/>
+
+{% if category %} {{ category }} {% endif %}
+
+{% for item in items %}
+<div class="articles-row">
+<a href="{{ item.get_absolute_url }}">
+<h4>{{ item.title }}</h4>
+</a>
+<h5>
+{{ item.pub_date|date:"j E Y"|safe|linebreaks }}
+</h5>
+<p>
+{{ item.description|safe|escape|striptags|truncatewords_html:32 }}
+</p>
+<div class="container-image">
+    {% load static %}
+</div>
+<div class=‘clearfix’></div>
+</div>
+{% endfor %}
+</body>
+</html>
